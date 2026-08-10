@@ -364,7 +364,24 @@ body{
 <audio id="musicaJogo" loop>
     <source src="musica.mp3" type="audio/mpeg">
 </audio>
-
+    
+<button id="botaoMusica" onclick="alternarMusica()" style="
+    position:fixed;
+    top:15px;
+    right:15px;
+    z-index:100;
+    padding:10px 16px;
+    border:0;
+    border-radius:10px;
+    background:#111;
+    color:white;
+    font-size:15px;
+    font-weight:bold;
+    cursor:pointer;
+">
+    🔊 Música: ON
+</button>
+    
 <canvas id="jogo" width="1100" height="650"></canvas>
 
 <script>
