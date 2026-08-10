@@ -243,7 +243,35 @@ body{
     line-height:1.5;
     margin:25px 0;
 }
+#botaoMusica{
+    position:fixed;
+    top:15px;
+    right:15px;
+    z-index:100;
 
+    padding:10px 16px;
+
+    border:1px solid rgba(255,255,255,.25);
+    border-radius:10px;
+
+    background:rgba(5,15,9,.85);
+    color:white;
+
+    font-size:15px;
+    font-weight:bold;
+
+    cursor:pointer;
+
+    box-shadow:0 5px 15px rgba(0,0,0,.4);
+
+    transition:.15s;
+}
+
+#botaoMusica:hover{
+    transform:scale(1.05);
+    background:rgba(20,80,40,.95);
+}
+    
 </style>
 </head>
 
@@ -328,9 +356,15 @@ body{
 <!-- =========================
      JOGO
 ========================= -->
-
+    
+<button id="botaoMusica" onclick="alternarMusica()">
+    🔊 Música: ON
+</button>
+    
 <canvas id="jogo" width="1100" height="650"></canvas>
-
+<audio id="musicaJogo" loop>
+    <source src="musica.mp3" type="audio/mpeg">
+</audio>
 
 <script>
 
@@ -491,10 +525,34 @@ function mostrarCreditos(){
         :"block";
 
 }
+function alternarMusica(){
 
+    const musica=document.getElementById("musicaJogo");
+    const botao=document.getElementById("botaoMusica");
+
+    if(musica.paused){
+
+        musica.play();
+
+        botao.textContent="🔊 Música: ON";
+
+    }
+    else{
+
+        musica.pause();
+
+        botao.textContent="🔇 Música: OFF";
+
+    }
+
+}
 
 function iniciarJogo(){
-
+    
+const musica=document.getElementById("musicaJogo");
+musica.volume=0.35;
+musica.play().catch(()=>{});
+    
     clearInterval(intervaloTempo);
 
     document.getElementById("menu").style.display="none";
