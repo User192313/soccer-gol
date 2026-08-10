@@ -360,11 +360,12 @@ body{
 <button id="botaoMusica" onclick="alternarMusica()">
     🔊 Música: ON
 </button>
-    
-<canvas id="jogo" width="1100" height="650"></canvas>
+
 <audio id="musicaJogo" loop>
-    <source src="Aylex - Energizer (freetouse.com).mp3" type="audio/mpeg">
+    <source src="musica.mp3" type="audio/mpeg">
 </audio>
+
+<canvas id="jogo" width="1100" height="650"></canvas>
 
 <script>
 
@@ -548,6 +549,16 @@ function alternarMusica(){
 }
 
 function iniciarJogo(){
+
+    const musica=document.getElementById("musicaJogo");
+
+    musica.volume=0.35;
+
+    musica.play().catch(erro=>{
+        console.log("Erro ao tocar música:", erro);
+    });
+
+    clearInterval(intervaloTempo);
     
 const musica=document.getElementById("musicaJogo");
 musica.volume=0.35;
